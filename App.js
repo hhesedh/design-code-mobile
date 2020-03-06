@@ -61,21 +61,21 @@ export default function App() {
             />
           </ScrollView>
           <Subtitle>Popular Courses</Subtitle>
-          <FlatList
-            data={courses}
-            keyExtractor={item => String(item.id)}
-            renderItem={({ item }) => (
+
+          <CoursesContainer>
+            {courses.map((course, index) => (
               <Course
-                image={item.image}
-                title={item.title}
-                subtitle={item.subtitle}
-                logo={item.logo}
-                author={item.author}
-                avatar={item.avatar}
-                caption={item.caption}
+                key={index}
+                image={course.image}
+                title={course.title}
+                subtitle={course.subtitle}
+                logo={course.logo}
+                author={course.author}
+                avatar={course.avatar}
+                caption={course.caption}
               />
-            )}
-          />
+            ))}
+          </CoursesContainer>
         </ScrollView>
       </SafeAreaView>
     </Container>
@@ -100,6 +100,11 @@ const Avatar = styled.Image`
   position: absolute;
   top: 0;
   left: 0;
+`;
+const CoursesContainer = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const Container = styled.View`
