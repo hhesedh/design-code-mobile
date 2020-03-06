@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView, SafeAreaView } from "react-native";
+import { ScrollView, SafeAreaView, FlatList } from "react-native";
 import styled from "styled-components";
 import Card from "./components/Card";
 import { NotificationIcon } from "./components/Icons";
@@ -19,50 +19,63 @@ export default function App() {
               style={{ position: "absolute", right: 20, top: 5 }}
             />
           </TitleBar>
-          <ScrollView
-            style={{
-              flexDirection: "row",
-              padding: 20,
-              paddingLeft: 12,
-              paddingTop: 30
-            }}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          >
-            {logos.map((logo, index) => (
-              <Logo key={index} image={logo.image} text={logo.text} />
-            ))}
+
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <FlatList
+              data={logos}
+              contentContainerStyle={{
+                flexDirection: "row",
+                paddingTop: 30,
+                paddingLeft: 12,
+                padding: 20
+              }}
+              keyExtractor={item => String(item.id)}
+              renderItem={({ item }) => (
+                <Logo image={item.image} text={item.text} />
+              )}
+            />
           </ScrollView>
           <Subtitle>Continue Learning</Subtitle>
           <ScrollView
             horizontal={true}
-            style={{ paddingBottom: 30 }}
             showsHorizontalScrollIndicator={false}
+            style={{ flexDirection: "row" }}
           >
-            {cards.map((card, index) => (
-              <Card
-                key={index}
-                title={card.title}
-                image={card.image}
-                caption={card.caption}
-                logo={card.logo}
-                subtitle={card.subtitle}
-              />
-            ))}
+            <FlatList
+              contentContainerStyle={{
+                flexDirection: "row",
+                paddingBottom: 30,
+                paddingRight: 12
+              }}
+              data={cards}
+              keyExtractor={item => String(item.id)}
+              renderItem={({ item }) => (
+                <Card
+                  title={item.title}
+                  image={item.image}
+                  caption={item.caption}
+                  logo={item.logo}
+                  subtitle={item.subtitle}
+                />
+              )}
+            />
           </ScrollView>
           <Subtitle>Popular Courses</Subtitle>
-          {courses.map((course, index) => (
-            <Course
-              key={index}
-              image={course.image}
-              title={course.title}
-              subtitle={course.subtitle}
-              logo={course.logo}
-              author={course.author}
-              avatar={course.avatar}
-              caption={course.caption}
-            />
-          ))}
+          <FlatList
+            data={courses}
+            keyExtractor={item => String(item.id)}
+            renderItem={({ item }) => (
+              <Course
+                image={item.image}
+                title={item.title}
+                subtitle={item.subtitle}
+                logo={item.logo}
+                author={item.author}
+                avatar={item.avatar}
+                caption={item.caption}
+              />
+            )}
+          />
         </ScrollView>
       </SafeAreaView>
     </Container>
@@ -114,26 +127,32 @@ const TitleBar = styled.View`
 
 const logos = [
   {
+    id: 1,
     image: require("./assets/logo-framerx.png"),
     text: "Framer X"
   },
   {
+    id: 2,
     image: require("./assets/logo-figma.png"),
     text: "Figma"
   },
   {
+    id: 3,
     image: require("./assets/logo-studio.png"),
     text: "Studio"
   },
   {
+    id: 4,
     image: require("./assets/logo-react.png"),
     text: "React"
   },
   {
+    id: 5,
     image: require("./assets/logo-swift.png"),
     text: "Swift"
   },
   {
+    id: 6,
     image: require("./assets/logo-sketch.png"),
     text: "Sketch"
   }
@@ -141,6 +160,7 @@ const logos = [
 
 const cards = [
   {
+    id: 1,
     title: "React Native for Designers",
     image: require("./assets/background11.jpg"),
     subtitle: "React Native",
@@ -148,6 +168,7 @@ const cards = [
     logo: require("./assets/logo-react.png")
   },
   {
+    id: 2,
     title: "Styled Components",
     image: require("./assets/background12.jpg"),
     subtitle: "React Native",
@@ -155,6 +176,7 @@ const cards = [
     logo: require("./assets/logo-react.png")
   },
   {
+    id: 3,
     title: "Props and Icons",
     image: require("./assets/background13.jpg"),
     subtitle: "React Native",
@@ -162,6 +184,7 @@ const cards = [
     logo: require("./assets/logo-react.png")
   },
   {
+    id: 4,
     title: "Static Data and Loop",
     image: require("./assets/background14.jpg"),
     subtitle: "React Native",
@@ -172,6 +195,7 @@ const cards = [
 
 const courses = [
   {
+    id: 1,
     title: "Prototype in InVision Studio",
     subtitle: "10 sections",
     image: require("./assets/background13.jpg"),
@@ -181,6 +205,7 @@ const courses = [
     caption: "Design and interactive prototype"
   },
   {
+    id: 2,
     title: "React for Designers",
     subtitle: "12 sections",
     image: require("./assets/background11.jpg"),
@@ -190,6 +215,7 @@ const courses = [
     caption: "Learn to design and code a React site"
   },
   {
+    id: 3,
     title: "Design and Code with Framer X",
     subtitle: "10 sections",
     image: require("./assets/background14.jpg"),
@@ -199,6 +225,7 @@ const courses = [
     caption: "Create powerful design and code components for your app"
   },
   {
+    id: 4,
     title: "Design System in Figma",
     subtitle: "10 sections",
     image: require("./assets/background6.jpg"),

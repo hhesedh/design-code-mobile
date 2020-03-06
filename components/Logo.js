@@ -18,7 +18,7 @@ const Container = styled.View`
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
   align-items: center;
-  margin: 5px 8px;
+  margin: 0 8px;
 `;
 
 const Image = styled.Image`
