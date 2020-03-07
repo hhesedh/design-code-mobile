@@ -1,5 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "license": "mit",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -14,6 +15,8 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
     "react-native-svg": "9.13.3",
     "react-native-web": "~0.11.7",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
