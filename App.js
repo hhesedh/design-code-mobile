@@ -5,11 +5,13 @@ import Card from "./components/Card";
 import { NotificationIcon } from "./components/Icons";
 import Logo from "./components/Logo";
 import Course from "./components/Course";
+import Menu from "./components/Menu";
 
 export default function App() {
   return (
     <Container>
       <SafeAreaView>
+        <Menu />
         <ScrollView style={{ height: "100%" }}>
           <TitleBar>
             <Avatar source={require("./assets/avatar.jpg")} />
